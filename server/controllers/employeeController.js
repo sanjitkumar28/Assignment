@@ -112,6 +112,23 @@ const addEmployee=(req,res)=>{
         })
     }
 }
+
+const getBoardOfDirectors=(req,res)=>{
+  let boardOfDirectors=[];
+  db.collection('employees').find({department:{$in:["Enginnering Department", "Operations"]}})
+  .forEach((employee) =>{
+    if(employee.age>40){
+      console.log(employee);
+      boardOfDirectors.push(employee);
+    }
+  })
+  .then(() => {
+    res.status(200).json(boardOfDirectors)
+  })
+  .catch(() => {
+    res.status(500).json({ error: 'Could not fetch the Board of Directors' })
+  })
+}
 module.exports={
     employee_details,
     getOldestEmployee,
@@ -121,5 +138,6 @@ module.exports={
     getDepartmentAverage,
     getAverage,
     getDepartmentVacencies,
-    addEmployee
+    addEmployee,
+    getBoardOfDirectors
 }

@@ -27,4 +27,6 @@ router.get('/:department/vacencies', employeeController.getDepartmentVacencies)
 
 router.post('/addEmployee',employeeController.addEmployee)
 
+router.get('/boardOfDirectors',employeeController.getBoardOfDirectors)
+
 module.exports = router;
